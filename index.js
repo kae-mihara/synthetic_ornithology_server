@@ -1,6 +1,7 @@
 const express = require('express');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -29,8 +30,12 @@ app.post('/api', (request, response) => {
 
   const data = request.body;
     console.log(data);
-  const timestamp = Date.now();
-  data.timestamp = timestamp;
+let buff = new Buffer.from(data.audio, 'base64');
+fs.writeFileSync('./audiofiles/' + data.timeStamp + '.wav', buff);
+  delete data.audio;
+
+  fs.writeFileSync('./weatherData/' + data.timeStamp + '.json', JSON.stringify(data, null, 2) , 'utf-8');
+
   database.insert(data);
   response.json(timestamp);
 });

@@ -1,4 +1,5 @@
-const mymap = L.map('checkinMap').setView([0, 0], 1);
+const mymap = L.map('checkinMap').setView([-24.801233, 132.945510], 5);
+
 const attribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 //const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -19,9 +20,10 @@ async function getData() {
     a temperature of ${item.main.temp}&deg; C.`;
     
 //snd.play();
-   var snd = new Audio("data:audio/x-wav;base64,"+item.audio);
-  
-    marker.bindPopup("<audio controls src=data:audio/wav;base64,"+item.audio +"/>");
+  var mypath=  item.timeStamp;
+   var fullPath = "./audiofiles/" + mypath + ".wav";
+    
+    marker.bindPopup("<audio controls src= + ${fullPath} />");
   }
   console.log(data);
 }
