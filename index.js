@@ -9,7 +9,7 @@ app.listen(port, () => {
   console.log(`Starting server at ${port}`);
 });
 app.use(express.static('public'));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '100mb' }));
 
 const database = new Datastore('database.db');
 database.loadDatabase();
@@ -25,11 +25,14 @@ app.get('/api', (request, response) => {
 });
 
 app.post('/api', (request, response) => {
+  console.log("We got a post");
+
   const data = request.body;
+    console.log(data);
   const timestamp = Date.now();
   data.timestamp = timestamp;
   database.insert(data);
-  response.json(data);
+  response.json(timestamp);
 });
 
 app.get('/weather/:latlon', async (request, response) => {

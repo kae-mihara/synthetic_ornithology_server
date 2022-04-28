@@ -14,19 +14,14 @@ async function getData() {
   const data = await response.json();
 
   for (item of data) {
-    const marker = L.marker([item.lat, item.lon]).addTo(mymap);
-    let txt = `The weather here at ${item.lat}&deg;,
-    ${item.lon}&deg; is ${item.weather.summary} with
-    a temperature of ${item.weather.temperature}&deg; C.`;
-
-    if (item.air.value < 0) {
-      txt += '  No air quality reading.';
-    } else {
-      txt += `  The concentration of particulate matter 
-    (${item.air.parameter}) is ${item.air.value} 
-    ${item.air.unit} last read on ${item.air.lastUpdated}`;
-    }
-    marker.bindPopup(txt);
+    const marker = L.marker([item.coord.lat, item.coord.lon]).addTo(mymap);
+    let txt = `The weather here at ${item.name} is ${item.weather.description} with
+    a temperature of ${item.main.temp}&deg; C.`;
+    
+//snd.play();
+   var snd = new Audio("data:audio/x-wav;base64,"+item.audio);
+  
+    marker.bindPopup("<audio controls src=data:audio/wav;base64,"+item.audio +"/>");
   }
   console.log(data);
 }
