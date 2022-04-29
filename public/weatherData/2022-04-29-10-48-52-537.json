@@ -1,0 +1,46 @@
+{
+  "base": "stations",
+  "clouds": {
+    "all": 0
+  },
+  "cod": 200,
+  "coord": {
+    "lat": -33.8922,
+    "lon": 151.191
+  },
+  "dateName": "10:48:52 Friday 29 April",
+  "dt": 1651193146,
+  "id": 2171589,
+  "isUploaded": false,
+  "main": {
+    "feels_like": 24.24,
+    "humidity": 76,
+    "pressure": 1017,
+    "temp": 23.82,
+    "temp_max": 27.62,
+    "temp_min": 20.9
+  },
+  "name": "Chippendale",
+  "sys": {
+    "country": "AU",
+    "id": 2002865,
+    "sunrise": 1651177671,
+    "sunset": 1651216634,
+    "type": 2
+  },
+  "timeStamp": "2022-04-29-10-48-52-537",
+  "timezone": 36000,
+  "visibility": 10000,
+  "weather": [
+    {
+      "description": "clear sky",
+      "icon": "01d",
+      "id": 800,
+      "main": "Clear"
+    }
+  ],
+  "wind": {
+    "deg": 300,
+    "speed": 3.6
+  }
+}

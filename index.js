@@ -37,28 +37,5 @@ fs.writeFileSync('./audiofiles/' + data.timeStamp + '.wav', buff);
   fs.writeFileSync('./weatherData/' + data.timeStamp + '.json', JSON.stringify(data, null, 2) , 'utf-8');
 
   database.insert(data);
-  response.json(timestamp);
-});
-
-app.get('/weather/:latlon', async (request, response) => {
-  console.log(request.params);
-  const latlon = request.params.latlon.split(',');
-  console.log(latlon);
-  const lat = latlon[0];
-  const lon = latlon[1];
-  console.log(lat, lon);
-  const api_key = process.env.API_KEY;
-  const weather_url = `https://api.darksky.net/forecast/${api_key}/${lat},${lon}/?units=si`;
-  const weather_response = await fetch(weather_url);
-  const weather_data = await weather_response.json();
-
-  const aq_url = `https://api.openaq.org/v1/latest?coordinates=${lat},${lon}`;
-  const aq_response = await fetch(aq_url);
-  const aq_data = await aq_response.json();
-
-  const data = {
-    weather: weather_data,
-    air_quality: aq_data
-  };
-  response.json(data);
+  response.json(data.timeStamp);
 });

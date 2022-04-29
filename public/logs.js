@@ -18,12 +18,11 @@ async function getData() {
     const marker = L.marker([item.coord.lat, item.coord.lon]).addTo(mymap);
     let txt = `The weather here at ${item.name} is ${item.weather.description} with
     a temperature of ${item.main.temp}&deg; C.`;
-    
-//snd.play();
-  var mypath=  item.timeStamp;
-   var fullPath = "./audiofiles/" + mypath + ".wav";
-    
-    marker.bindPopup("<audio controls src= + ${fullPath} />");
+
+   
+   // marker.bindPopup(txt);
+
+    marker.bindPopup("Latitude :" + item.coord.lat + "<br/> Longtitude :" + item.coord.lon + "<br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"></audio>" )
   }
   console.log(data);
 }
