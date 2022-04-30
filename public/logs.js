@@ -8,6 +8,11 @@ const tileUrl =
 const tiles = L.tileLayer(tileUrl, { attribution });
 tiles.addTo(mymap);
 
+//let thisy =  document.getElementById("start");
+
+//.max = new Date().toISOString().substring(0, 10);
+//console.log(thisy.max);
+
 getData();
 
 async function getData() {
@@ -22,7 +27,8 @@ async function getData() {
    
    // marker.bindPopup(txt);
 
-    marker.bindPopup("Latitude :" + item.coord.lat + "<br/> Longtitude :" + item.coord.lon + "<br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"></audio>" )
+    marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
   }
   console.log(data);
 }
+

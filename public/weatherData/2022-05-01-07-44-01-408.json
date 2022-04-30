@@ -1,0 +1,46 @@
+{
+  "base": "stations",
+  "clouds": {
+    "all": 40
+  },
+  "cod": 200,
+  "coord": {
+    "lat": -33.9713,
+    "lon": 151.252
+  },
+  "dateName": "07:44:01 Sunday  1 May",
+  "dt": 1651355038,
+  "id": 2159018,
+  "isUploaded": false,
+  "main": {
+    "feels_like": 12.97,
+    "humidity": 68,
+    "pressure": 1022,
+    "temp": 13.76,
+    "temp_max": 15.59,
+    "temp_min": 10.93
+  },
+  "name": "Malabar",
+  "sys": {
+    "country": "AU",
+    "id": 9600,
+    "sunrise": 1651350556,
+    "sunset": 1651389291,
+    "type": 1
+  },
+  "timeStamp": "2022-05-01-07-44-01-408",
+  "timezone": 36000,
+  "visibility": 10000,
+  "weather": [
+    {
+      "description": "scattered clouds",
+      "icon": "03d",
+      "id": 802,
+      "main": "Clouds"
+    }
+  ],
+  "wind": {
+    "deg": 270,
+    "speed": 4.12
+  }
+}

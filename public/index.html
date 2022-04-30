@@ -1,35 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-      crossorigin=""
-    ></script>
-    <style>
-      #checkinMap {
-        height:100vh;
-        margin: 10px 40px;
-      }
-    </style>
-    <link rel="stylesheet" type="text/css" href="../style.css" />
-    <title>Synthetic Ornithology data mapping</title>
-  </head>
-  <body>
-    <h1>Synthetic Ornithology data mapping</h1>
-    <div id="checkinMap"></div>
-    <script src="logs.js"></script>
-  </body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0"
+         />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link
+         rel="stylesheet"
+         href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+         crossorigin=""
+         />
+      <script
+         src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+         crossorigin=""
+         ></script>
+      <style>
+         #checkinMap {
+         height:80vh;
+         margin: 10px 40px;
+         }
+      </style>
+      <link rel="stylesheet" type="text/css" href="../style.css" />
+      <title>Synthetic Ornithology data mapping</title>
+   </head>
+   <body>
+      <h1>Synthetic Ornithology data mapping</h1>
+      <div id="checkinMap"></div>
+      <script src="logs.js"></script>
+      <script type = "text/javascript">  
+         function polSliders() {
+         var minTemp = document.getElementByID('minTemp');
+         console.log("minTemp: " + minTemp.value);
+         
+         var maxTemp = document.getElementByID('maxTemp');
+         console.log("maxTemp: " + maxTemp.value);
+         }
+      </script> 
+      <div class="container space-around">
+         <div>
+            <div>
+               <input type="range" id="minTemp" name="minTemp"
+                  min="-20" max="60"onchange="polSliders()">
+               <label for="minTemp">Min Temperature</label>
+            </div>
+            <div>
+               <input type="range" id="maxTemp" name="maxTemp"
+                  min="-120" max="60">
+               <label for="maxTemp">Max Temperature</label>
+            </div>
+         </div>
+         <div>
+            <div>
+               <input type="range" id="latMin" name="latMin"
+                  min="-180" max="180">
+               <label for="latMin">Min Latitude</label>
+            </div>
+            <div>
+               <input type="range" id="latMax" name="latMax"
+                  min="-180" max="180">
+               <label for="latMax">Max Latitude</label>
+            </div>
+         </div>
+         <div>
+            <div>
+               <input type="range" id="lonMin" name="lonMin"
+                  min="-180" max="180">
+               <label for="lonMin">Min Longitude</label>
+            </div>
+            <div>
+               <input type="range" id="lonMax" name="lonMax"
+                  min="-180" max="180">
+               <label for="lonMax">Max Longitude</label>
+            </div>
+         </div>
+         <div>
+            <label for="start">Earliest date:</label>
+            <input type="date" id="start" name="Start-Date"
+               value="2022-04-27"
+             
+               min="2022-04-27" max="2018-12-31"> <br>
+            <label for="end">Latest date:</label>
+            <input type="date" id="end" name="End-Date"
+               value= Date(); 
+               min="2022-04-27" max="2018-12-31">
+         </div>
+      </div>
+   </body>
 </html>
