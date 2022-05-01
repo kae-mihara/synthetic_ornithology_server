@@ -9,13 +9,13 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Starting server at ${port}`);
 });
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/dist'));
 app.use(express.json({ limit: '100mb' }));
 
 const database = new Datastore('database.db');
 database.loadDatabase();
 
-app.get('/api', (request, response) => {
+app.get('/data', (request, response) => {
   database.find({}, (err, data) => {
     if (err) {
       response.end();

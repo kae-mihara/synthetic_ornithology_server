@@ -24,27 +24,17 @@
          margin: 10px 40px;
          }
       </style>
-      <link rel="stylesheet" type="text/css" href="../style.css" />
-      <title>Synthetic Ornithology data mapping</title>
+	<link href="scss/main.scss" rel="stylesheet" type="text/css">
+   <title>Synthetic Ornithology data mapping</title>
    </head>
    <body>
       <h1>Synthetic Ornithology data mapping</h1>
       <div id="checkinMap"></div>
-      <script src="logs.js"></script>
-      <script type = "text/javascript">  
-         function polSliders() {
-         var minTemp = document.getElementByID('minTemp');
-         console.log("minTemp: " + minTemp.value);
-         
-         var maxTemp = document.getElementByID('maxTemp');
-         console.log("maxTemp: " + maxTemp.value);
-         }
-      </script> 
       <div class="container space-around">
          <div>
             <div>
                <input type="range" id="minTemp" name="minTemp"
-                  min="-20" max="60"onchange="polSliders()">
+                  min="-20" max="60">
                <label for="minTemp">Min Temperature</label>
             </div>
             <div>
@@ -90,4 +80,5 @@
          </div>
       </div>
    </body>
+   <script src="logs.js"></script>
 </html>
