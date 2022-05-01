@@ -32,7 +32,7 @@ lonMaxSL.addEventListener("change", function() {
   resetBoudningBox();
 });
 
-function resetBoudningBox(){
+function w(){
   mymap.removeLayer(boundingBox);
   bounds = [[latMinSL.value, lonMinSL.value], [latMaxSL.value, lonMaxSL.value]];
   boundingBox = L.rectangle(bounds, {color: "#ff7800", weight: 1});
