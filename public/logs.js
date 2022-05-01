@@ -73,24 +73,8 @@ function isSampleInDateRange( dateStamp ) {
 };
 
 getData();
-var progress = document.getElementById('progress');
-		var progressBar = document.getElementById('progress-bar');
 
-		function updateProgressBar(processed, total, elapsed, layersArray) {
-			if (elapsed > 1000) {
-				// if it takes more than a second to load, display the progress bar:
-				progress.style.display = 'block';
-				progressBar.style.width = Math.round(processed/total*100) + '%';
-			}
-
-			if (processed === total) {
-				// all markers processed - hide the progress bar:
-				progress.style.display = 'none';
-			}
-		}
-
-		var markers = L.markerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
-var markerList = [];
+var markers = L.markerClusterGroup();
 
 async function getData() {
   var counter = 0;
@@ -104,10 +88,9 @@ async function getData() {
     const marker = L.marker([item.coord.lat, item.coord.lon]).addTo(mymap);
 
     marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
-    markerList.push(marker);
+    markers.addLayer(marker);
   }
   console.log(data);
-  markers.addLayers(markerList);
 		myMap.addLayer(markers);
 };
 
