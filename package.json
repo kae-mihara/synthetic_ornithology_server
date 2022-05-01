@@ -2,7 +2,7 @@
   "name": "module3",
   "version": "1.0.0",
   "description": "Audio weather companionmapper br Frederick Rodrigues.",
-  "main": "index.js",
+
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
