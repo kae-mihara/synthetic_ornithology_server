@@ -39,7 +39,7 @@ lonMinSL.addEventListener("change", function() {
 lonMaxSL.addEventListener("change", function() {
     resetBoudningBox();
 });
-function resetBoudningBox() {
+function w() {
     mymap.removeLayer(boundingBox);
     bounds = [
         [
