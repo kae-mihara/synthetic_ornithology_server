@@ -5,7 +5,7 @@ const fs = require('fs');
 require('dotenv').config();
 var https = require("https");
 const app = express();
-app.use(express.statinpmc(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist'));
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Starting server at ${port}`);
