@@ -15,29 +15,30 @@ const lonMaxSL = document.getElementById("lonMax");
 var bounds = [[latMaxSL.value, lonMaxSL.value] , [latMinSL.value, lonMinSL.value]];
 var boundingBox = L.rectangle(bounds, {color: "#ff7800", weight: 1});
 
-
-latMinSL.addEventListener("change", function() {
-  resetBoudningBox();
-})
-
-latMaxSL.addEventListener("change", function() {
-  resetBoudningBox();
-});
-
-lonMinSL.addEventListener("change", function() {
-  resetBoudningBox();
-})
-
-lonMaxSL.addEventListener("change", function() {
-  resetBoudningBox();
-});
-
-function w(){
+function resetBoundingBox(){
   mymap.removeLayer(boundingBox);
   bounds = [[latMinSL.value, lonMinSL.value], [latMaxSL.value, lonMaxSL.value]];
   boundingBox = L.rectangle(bounds, {color: "#ff7800", weight: 1});
   mymap.addLayer(boundingBox);
-}
+};
+
+latMinSL.addEventListener("change", function() {
+  resetBoundingBox();
+});
+
+latMaxSL.addEventListener("change", function() {
+  resetBoundingBox();
+});
+
+lonMinSL.addEventListener("change", function() {
+  resetBoundingBox();
+});
+
+lonMaxSL.addEventListener("change", function() {
+  resetBoundingBox();
+});
+
+
 
 const minTempSL = document.getElementById("minTemp");
 const maxTempSL = document.getElementById("maxTemp");
@@ -47,12 +48,12 @@ var maxTemp;
 minTempSL.addEventListener("change", function(){
   minTemp= minTempSL.value;
   console.log("Min temp: " +  minTemp);
-})
+});
 
 maxTempSL.addEventListener("change", function(){
   maxTemp=maxTempSL.value;
   console.log("Max temp: " + maxTemp);
-})
+});
 
 const earliestDate = document.getElementById("start");
 const latestDate = document.getElementById("end");
@@ -69,7 +70,7 @@ function isSampleInDateRange( dateStamp ) {
  
 
   return minDate < dateStamp && dateStamp < maxDate;
-}
+};
 
 getData();
 
@@ -78,16 +79,12 @@ async function getData() {
   const data = await response.json();
 
   for (item of data) {
+    console.log(item);
     const marker = L.marker([item.coord.lat, item.coord.lon]).addTo(mymap);
-    let txt = `The weather here at ${item.name} is ${item.weather.description} with
-    a temperature of ${item.main.temp}&deg; C.`;
-
-   
-   // marker.bindPopup(txt);
 
     marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
   }
   console.log(data);
-}
+};
 
 
