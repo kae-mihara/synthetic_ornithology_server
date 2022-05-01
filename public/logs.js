@@ -73,6 +73,9 @@ function isSampleInDateRange( dateStamp ) {
 };
 
 getData();
+var markers = L.markerClusterGroup({ chunkedLoading: true });
+
+var markerList = [];
 
 async function getData() {
   var counter = 0;
@@ -86,8 +89,11 @@ async function getData() {
     const marker = L.marker([item.coord.lat, item.coord.lon]).addTo(mymap);
 
     marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
+    markerList.push(marker);
   }
   console.log(data);
+  markers.addLayers(markerList);
+		myMap.addLayer(markers);
 };
 
 
