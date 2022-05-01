@@ -82,10 +82,13 @@ function isSampleInDateRange(dateStamp) {
 }
 getData();
 async function getData() {
+    var counter = 0;
     const response = await fetch('/api');
     const data = await response.json();
+    console.log(Object.keys(data).length);
     for (item of data){
-        console.log(item);
+        console.log("Getting data : " + counter + " " + item);
+        counter++;
         const marker = L.marker([
             item.coord.lat,
             item.coord.lon
