@@ -38,5 +38,5 @@ fs.writeFileSync('public/audiofiles/' + data.timeStamp + '.wav', buff);
   fs.writeFileSync('public/weatherData/' + data.timeStamp + '.json', JSON.stringify(data, null, 2) , 'utf-8');
 
   database.insert(data);
-  response.json(data.timeStamp);
+  response.json(data.timeStamp + "_success");
 });
