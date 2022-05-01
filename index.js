@@ -5,21 +5,12 @@ const fs = require('fs');
 require('dotenv').config();
 var https = require("https");
 const app = express();
+app.use(express.statinpmc(__dirname + '/dist'));
 const port = process.env.PORT || 3000;
-https
-  .createServer(
-    {
-      key: fs.readFileSync("server.key"),
-      cert: fs.readFileSync("server.cert"),
-    },
-    app
-  )
-  .listen(3000, function () {
-    console.log(
-      "Example app listening on port 3000! Go to https://localhost:3000/"
-    );
-  });
-app.use(express.static(__dirname + '/dist'));
+app.listen(port, () => {
+  console.log(`Starting server at ${port}`);
+});
+app.use(express.static('public'));
 app.use(express.json({ limit: '100mb' }));
 
 const database = new Datastore('database.db');
