@@ -91,14 +91,15 @@ async function getData() {
   for (item of data) {
     console.log("Getting data : " + counter + " " + item);
     counter ++;
-    if(item.coord.lat > latMinSL.value && item.coord.lat << latMaxSL.value){
+    if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value){
       if(item.main.temp > minTemp && item.main.temp < maxTemp){
         const marker = L.marker([item.coord.lat, item.coord.lon]);
+        marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
+        markers.addLayer(marker);
       }
     }
 
-    marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
-    markers.addLayer(marker);
+    
   }
   console.log(data);
   mymap.addLayer(markers);
