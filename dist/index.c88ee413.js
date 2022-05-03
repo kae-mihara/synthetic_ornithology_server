@@ -101,6 +101,7 @@ async function getData() {
         console.log("Getting data : " + counter + " " + item);
         counter++;
         // if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value){
+        console.log("Min temp: " + minTemp + " Max Temp: " + maxTemp + " Actual temp: " + item.main.temp);
         // if(item.main.temp > minTemp && item.main.temp < maxTemp){
         const marker = L.marker([
             item.coord.lat,
