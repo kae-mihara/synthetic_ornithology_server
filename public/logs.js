@@ -2,9 +2,15 @@ const mymap = L.map('checkinMap').setView([-24.801233, 132.945510], 5);
 
 const attribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-//const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-const tileUrl =
-  'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
+const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+//const tileUrl = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
+//const tileUrl = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
+
+  googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
 const tiles = L.tileLayer(tileUrl, { attribution });
 tiles.addTo(mymap);
 
@@ -85,7 +91,11 @@ async function getData() {
   for (item of data) {
     console.log("Getting data : " + counter + " " + item);
     counter ++;
-    const marker = L.marker([item.coord.lat, item.coord.lon]);
+    if(item.coord.lat > latMinSL.value && item.coord.lat << latMaxSL.value){
+      if(item.main.temp > minTemp && item.main.temp < maxTemp){
+        const marker = L.marker([item.coord.lat, item.coord.lon]);
+      }
+    }
 
     marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp +".wav\"> type=\"audio/wave\" </audio>" )
     markers.addLayer(marker);
