@@ -93,8 +93,9 @@ function isSampleInDateRange(dateStamp) {
     return minDate < dateStamp && dateStamp < maxDate;
 }
 getData();
-var markers = L.markerClusterGroup();
 async function getData() {
+    var markers = L.markerClusterGroup();
+    mymap.removeLayer(markers);
     var counter = 0;
     const response = await fetch('/api');
     const data = await response.json();
@@ -103,15 +104,15 @@ async function getData() {
         console.log("Getting data : " + counter + " " + item);
         counter++;
         // if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value){
-        console.log("Min temp: " + minTemp + " Max Temp: " + maxTemp + " Actual temp: " + item.main.temp);
-        // if(item.main.temp > minTemp && item.main.temp < maxTemp){
-        const marker = L.marker([
-            item.coord.lat,
-            item.coord.lon
-        ]);
-        marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp + ".wav\"> type=\"audio/wave\" </audio>");
-        markers.addLayer(marker);
-    // }
+        //console.log("Min temp: " + minTemp + " Max Temp: " + maxTemp + " Actual temp: " + item.main.temp)
+        if (item.main.temp > minTemp && item.main.temp < maxTemp) {
+            const marker = L.marker([
+                item.coord.lat,
+                item.coord.lon
+            ]);
+            marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp + ".wav\"> type=\"audio/wave\" </audio>");
+            markers.addLayer(marker);
+        }
     //  }
     }
     console.log(data);

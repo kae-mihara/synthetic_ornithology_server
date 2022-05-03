@@ -82,9 +82,12 @@ function isSampleInDateRange( dateStamp ) {
 
 getData();
 
-var markers = L.markerClusterGroup();
 
 async function getData() {
+  var markers = L.markerClusterGroup();
+
+  mymap.removeLayer(markers);
+
   var counter = 0;
   const response = await fetch('/api');
   const data = await response.json();
