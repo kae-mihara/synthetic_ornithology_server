@@ -53,11 +53,13 @@ var maxTemp;
 
 minTempSL.addEventListener("change", function(){
   minTemp= minTempSL.value;
+  getData();
   console.log("Min temp: " +  minTemp);
 });
 
 maxTempSL.addEventListener("change", function(){
   maxTemp=maxTempSL.value;
+  getData();
   console.log("Max temp: " + maxTemp);
 });
 
