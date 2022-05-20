@@ -16,3 +16,4 @@ dist/
 **/.replit.nix
 database.db
 **/database.db
+ecosystem.config.js
