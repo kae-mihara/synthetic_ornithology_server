@@ -17,7 +17,7 @@ app.listen(port, () => {
 app.use(express.static("public"));
 app.use(express.json({ limit: "100mb" }));
 
-const database = new Datastore("database.db");
+const database = new Datastore("./database.db");
 database.loadDatabase();
 
 app.get("/api", (request, response) => {

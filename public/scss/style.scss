@@ -5,15 +5,10 @@
 .container.space-around {
   position: relative;
   align-items: left;
-  /* aligns all the items vertically centered */
   z-index: 500;
   flex-direction: column;
-
 }
 
-.container.space-between {
-  //justify-content: space-between;
-}
 
 .button {
   position:absolute;
