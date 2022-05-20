@@ -3,11 +3,28 @@
 }
 
 .container.space-around {
+  z-index: 500;
   justify-content: space-around;
+  position: relative;
 }
 
 .container.space-between {
   justify-content: space-between;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #checkinMap {
+  height: 100%;
+  width: 100vw;
+}
+
+h1 {
+  z-index: 500;
+  position: relative;
 }
 
 /*# sourceMappingURL=index.c74267d1.css.map */

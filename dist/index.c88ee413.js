@@ -1,18 +1,16 @@
-const mymap = L.map('checkinMap').setView([
+const mymap = L.map("checkinMap").setView([
     -24.801233,
-    132.945510
+    132.94551
 ], 5);
 const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-//const tileUrl = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
-//const tileUrl = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
-googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+googleTerrain = L.tileLayer("http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
     maxZoom: 20,
     subdomains: [
-        'mt0',
-        'mt1',
-        'mt2',
-        'mt3'
+        "mt0",
+        "mt1",
+        "mt2",
+        "mt3"
     ]
 });
 const tiles = L.tileLayer(tileUrl, {
@@ -31,7 +29,7 @@ var bounds = [
     [
         latMinSL.value,
         lonMinSL.value
-    ]
+    ], 
 ];
 var boundingBox = L.rectangle(bounds, {
     color: "#ff7800",
@@ -47,7 +45,7 @@ function resetBoundingBox() {
         [
             latMaxSL.value,
             lonMaxSL.value
-        ]
+        ], 
     ];
     boundingBox = L.rectangle(bounds, {
         color: "#ff7800",
@@ -82,7 +80,7 @@ maxTempSL.addEventListener("change", function() {
     console.log("Max temp: " + maxTemp);
 });
 const earliestDate = document.getElementById("start");
-const latestDate = document.getElementById("end");
+const latestDate = document.getElementById("end-date");
 earliestDate.max = new Date().toISOString().substring(0, 10);
 latestDate.value = new Date().toISOString().substring(0, 10);
 latestDate.max = new Date().toISOString().substring(0, 10);
@@ -97,7 +95,7 @@ async function getData() {
     var markers = L.markerClusterGroup();
     mymap.removeLayer(markers);
     var counter = 0;
-    const response = await fetch('/api');
+    const response = await fetch("/api");
     const data = await response.json();
     console.log(Object.keys(data).length);
     for (item of data){
@@ -110,7 +108,7 @@ async function getData() {
                 item.coord.lat,
                 item.coord.lon
             ]);
-            marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + "&deg; C.<br/><br/><audio controls><source src=\"/audiofiles/" + item.timeStamp + ".wav\"> type=\"audio/wave\" </audio>");
+            marker.bindPopup("Location:" + item.name + "<br/> Weather :" + item.weather[0].description + "<br/> Date:" + item.dateName + "<br/> Temperature :" + item.main.temp + '&deg; C.<br/><br/><audio controls><source src="/audiofiles/' + item.timeStamp + '.wav"> type="audio/wave" </audio>');
             markers.addLayer(marker);
         }
     //  }
