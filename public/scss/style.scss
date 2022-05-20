@@ -1,9 +1,55 @@
 .container {
   display: flex;
 }
+
 .container.space-around {
-  justify-content: space-around;
+  position: relative;
+  align-items: left;
+  /* aligns all the items vertically centered */
+  z-index: 500;
+  flex-direction: column;
+
 }
-.container.space-between {  
-  justify-content: space-between;
+
+.container.space-between {
+  //justify-content: space-between;
+}
+
+.button {
+  position:absolute;
+  top:20px;
+  right: 20px;
+    z-index: 600;
+
+    margin: 0.2em;
+}
+
+.mapFilters {
+  border-radius: 1em;
+  position: relative;
+  display: none;
+  padding: 1em;
+  margin-right: 1em;
+  float: right;
+  background: rgba(255, 255, 255, 0.502);
+  z-index: 500;
+
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
+#checkinMap {
+  height: 100%;
+  width: 100vw;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+  z-index: 500;
 }
