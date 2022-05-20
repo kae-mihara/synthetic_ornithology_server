@@ -1,1 +1,1 @@
-{"mappings":"ACAA;;;;AAGA;;;;;;AAMA;;;;AAGA;;;;;AAIA;;;;;AAKA","sources":["public/scss/main.scss","public/scss/style.scss"],"sourcesContent":["@import \"style\"; \n",null],"names":[],"version":3,"file":"index.c74267d1.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"ACAA;;;;AAIA;;;;;;;AAUA;;;;;;;;AAQA;;;;;;;;;;;AAYA;;;;;AAKA;;;;;AAOA","sources":["public/scss/main.scss","public/scss/style.scss"],"sourcesContent":["@import \"style\"; \n",null],"names":[],"version":3,"file":"index.c74267d1.css.map","sourceRoot":"/__parcel_source_root/"}
