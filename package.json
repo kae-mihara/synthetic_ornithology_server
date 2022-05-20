@@ -1,5 +1,5 @@
 {
-  "name": "module3",
+  "name": "AudioWeather",
   "version": "1.0.0",
   "description": "Audio weather companionmapper br Frederick Rodrigues.",
   "scripts": {
@@ -11,9 +11,9 @@
   "keywords": [
     "weather",
     "api",
-    "selfie"
+    "audio"
   ],
-  "author": "Daniel Shiffman",
+  "author": "Frederick Rodrigues",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.0.0",

@@ -5,19 +5,23 @@
 .container.space-around {
   position: relative;
   align-items: left;
+  /* aligns all the items vertically centered */
   z-index: 500;
   flex-direction: column;
 
 }
 
-.container.space-between {}
+.container.space-between {
+  //justify-content: space-between;
+}
 
 .button {
-  position: absolute;
-  top: 20px;
+  position:absolute;
+  top:20px;
   right: 20px;
-  z-index: 600;
-  margin: 0.2em;
+    z-index: 600;
+
+    margin: 0.2em;
 }
 
 .mapFilters {
