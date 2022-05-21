@@ -27,11 +27,9 @@
 
 .mapFilters {
   grid-area: "SettingsDiv";
-  float: right;
   z-index: 500;
   background: #ffffff80;
   border-radius: 1em;
-  margin-right: 1em;
   padding: 1em;
   display: none;
   position: relative;
