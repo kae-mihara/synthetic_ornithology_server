@@ -1,1 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="true"><script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin="true"></script><link rel="stylesheet" href="/index.c008a804.css"><link rel="stylesheet" href="/index.b2cb5e55.css"><script src="/index.049bd34b.js"></script><link href="/index.c0386d5c.css" rel="stylesheet" type="text/css"><title>Synthetic Ornithology data mapping</title><link rel="icon" type="image/x-icon" href="/favicon.ad44ef5f.ico"></head><body> <div id="progress"><div id="progress-bar"></div></div> <div id="checkinMap"> <div id="master-grid"> <h1>Synthetic Ornithology data mapping</h1> <button class="button" id="settingsButton"><img src="/settings.eb96e889.png"></button> <div class="mapFilters" id="mapFilters"> <div class="container space-around"> <div> <input type="range" id="minTemp" name="minTemp" min="-20" max="50" value="0" step="0.25"> <label for="minTemp" id="minTempL">Min temp: 0</label> </div> <div> <input type="range" id="maxTemp" name="maxTemp" min="-20" max="50" value="35" step="0.25"> <label for="maxTemp" id="maxTempL">Max temp: 35</label> </div> <div> <input type="range" id="latMin" name="latMin" min="-50" max="-8" value="-45" step="0.25"> <label for="latMin" id="latMinL">Min Latitude: -45</label> </div> <div> <input type="range" id="latMax" name="latMax" min="-50" max="-8" value="-10" step="0.25"> <label for="latMax" id="latMaxL">Max Latitude: -10</label> </div> <div> <input type="range" id="lonMin" name="lonMin" min="110" max="155" value="155" step="0.25"> <label for="lonMin" id="lonMinL">Min Longitude: 0</label> </div> <div> <input type="range" id="lonMax" name="lonMax" min="-110" max="155" value="110" step="0.25"> <label for="lonMax" id="lonMaxL">Max Longitude: 0</label> </div> <div> <label for="start">Earliest date:</label> <input type="date" id="start-date" name="Start-Date" value="2022-04-27" min="2018-12-31"> </div> <div> <label for="end">Latest date:</label> <input type="date" id="end-date" name="End-Date" value="2022-05-20" min="2018-12-31"> </div> </div> </div> </div> </div> </body><script src="/index.7a62d8d8.js"></script></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="true">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin="true"></script>
+    <link rel="stylesheet" href="/index.97782d8d.css">
+    <link rel="stylesheet" href="/index.8d1faf1c.css">
+
+    <script src="/index.075d0296.js"></script>
+
+    <!-- <style>
+         #checkinMap {
+         height:80vh;
+         margin: 10px 40px;
+         }
+      </style> -->
+    <link href="/index.c74267d1.css" rel="stylesheet" type="text/css">
+    <title>Synthetic Ornithology data mapping</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.88402922.ico">
+  </head>
+  <body>
+    <div id="progress"><div id="progress-bar"></div></div>
+    <div id="checkinMap">
+      <div id="masterGrid">
+        <h1>Synthetic Ornithology data mapping</h1>
+        <button class="button" id="settingsButton">
+          <img src="/settings.61aa1aa9.png" id="buttonImage">
+        </button>
+
+        <div class="mapFilters" id="mapFilters">
+          <div class="container space-around">
+            <div>
+              <input class="sliderStyle" type="range" id="minTemp" name="minTemp" min="-20" max="50" value="0" step="0.25">
+              <label for="minTemp" id="minTempL">Min temp: 0</label>
+            </div>
+            <div>
+              <input class="sliderStyle" type="range" id="maxTemp" name="maxTemp" min="-20" max="50" value="35" step="0.25">
+              <label for="maxTemp" id="maxTempL">Max temp: 35</label>
+            </div>
+
+            <div>
+              <input class="sliderStyle" type="range" id="latMin" name="latMin" min="-50" max="-8" value="-45" step="0.25">
+              <label for="latMin" id="latMinL">Min Latitude: -45</label>
+            </div>
+            <div>
+              <input class="sliderStyle" type="range" id="latMax" name="latMax" min="-50" max="-8" value="-10" step="0.25">
+              <label for="latMax" id="latMaxL">Max Latitude: -10</label>
+            </div>
+
+            <div>
+              <input class="sliderStyle" type="range" id="lonMin" name="lonMin" min="110" max="155" value="155" step="0.25">
+              <label for="lonMin" id="lonMinL">Min Longitude: 0</label>
+            </div>
+            <div>
+              <input class="sliderStyle" type="range" id="lonMax" name="lonMax" min="-110" max="155" value="110" step="0.25">
+              <label for="lonMax" id="lonMaxL">Max Longitude: 0</label>
+            </div>
+
+            <div>
+              <label for="start">Earliest date:</label>
+              <input type="date" id="start-date" name="Start-Date" value="2022-04-27" min="2018-12-31">
+            </div>
+            <div>
+              <label for="end">Latest date:</label>
+              <input type="date" id="end-date" name="End-Date" value="2022-05-20" min="2018-12-31">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/index.a8b85b30.js"></script>
+</html>

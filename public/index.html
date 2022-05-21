@@ -32,117 +32,124 @@
       </style> -->
     <link href="scss/main.scss" rel="stylesheet" type="text/css" />
     <title>Synthetic Ornithology data mapping</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
   </head>
   <body>
     <div id="progress"><div id="progress-bar"></div></div>
     <div id="checkinMap">
-       <div id="master-grid">
-      <h1>Synthetic Ornithology data mapping</h1>
-      <button class="button" id="settingsButton" ><img src="/images/settings.png" ></button>
+      <div id="masterGrid">
+        <h1>Synthetic Ornithology data mapping</h1>
+        <button class="button" id="settingsButton">
+          <img src="/images/settings.png" id="buttonImage" />
+        </button>
 
-      <div class="mapFilters" id="mapFilters">
-        <div class="container space-around">
-          <div>
-            <input
-              type="range"
-              id="minTemp"
-              name="minTemp"
-              min="-20"
-              max="50"
-              value="0"
-              step="0.25"
-            />
-            <label for="minTemp" id="minTempL">Min temp: 0</label>
-          </div>
-          <div>
-            <input
-              type="range"
-              id="maxTemp"
-              name="maxTemp"
-              min="-20"
-              max="50"
-              value="35"
-              step="0.25"
-            />
-            <label for="maxTemp" id="maxTempL">Max temp: 35</label>
-          </div>
+        <div class="mapFilters" id="mapFilters">
+          <div class="container space-around">
+            <div>
+              <input
+                class="sliderStyle"
+                type="range"
+                id="minTemp"
+                name="minTemp"
+                min="-20"
+                max="50"
+                value="0"
+                step="0.25"
+              />
+              <label for="minTemp" id="minTempL">Min temp: 0</label>
+            </div>
+            <div>
+              <input
+                class="sliderStyle"
+                type="range"
+                id="maxTemp"
+                name="maxTemp"
+                min="-20"
+                max="50"
+                value="35"
+                step="0.25"
+              />
+              <label for="maxTemp" id="maxTempL">Max temp: 35</label>
+            </div>
 
-          <div>
-            <input
-              type="range"
-              id="latMin"
-              name="latMin"
-              min="-50"
-              max="-8"
-              value="-45"
-              step="0.25"
-            />
-            <label for="latMin" id="latMinL">Min Latitude: -45</label>
-          </div>
-          <div>
-            <input
-              type="range"
-              id="latMax"
-              name="latMax"
-              min="-50"
-              max="-8"
-              value="-10"
-              step="0.25"
-            />
-            <label for="latMax" id="latMaxL">Max Latitude: -10</label>
-          </div>
+            <div>
+              <input
+                class="sliderStyle"
+                type="range"
+                id="latMin"
+                name="latMin"
+                min="-50"
+                max="-8"
+                value="-45"
+                step="0.25"
+              />
+              <label for="latMin" id="latMinL">Min Latitude: -45</label>
+            </div>
+            <div>
+              <input
+                class="sliderStyle"
+                type="range"
+                id="latMax"
+                name="latMax"
+                min="-50"
+                max="-8"
+                value="-10"
+                step="0.25"
+              />
+              <label for="latMax" id="latMaxL">Max Latitude: -10</label>
+            </div>
 
-          <div>
-            <input
-              type="range"
-              id="lonMin"
-              name="lonMin"
-              min="110"
-              max="155"
-              value="155"
-              step="0.25"
-            />
-            <label for="lonMin" id="lonMinL">Min Longitude: 0</label>
-          </div>
-          <div>
-            <input
-              type="range"
-              id="lonMax"
-              name="lonMax"
-              min="-110"
-              max="155"
-              value="110"
-              step="0.25"
-            />
-            <label for="lonMax" id="lonMaxL">Max Longitude: 0</label>
-          </div>
+            <div>
+              <input
+                class="sliderStyle"
+                type="range"
+                id="lonMin"
+                name="lonMin"
+                min="110"
+                max="155"
+                value="155"
+                step="0.25"
+              />
+              <label for="lonMin" id="lonMinL">Min Longitude: 0</label>
+            </div>
+            <div>
+              <input
+                class="sliderStyle"
+                type="range"
+                id="lonMax"
+                name="lonMax"
+                min="-110"
+                max="155"
+                value="110"
+                step="0.25"
+              />
+              <label for="lonMax" id="lonMaxL">Max Longitude: 0</label>
+            </div>
 
-          <div>
-            <label for="start">Earliest date:</label>
-            <input
-              type="date"
-              id="start-date"
-              name="Start-Date"
-              value="2022-04-27"
-              min="2018-12-31"
-            />
-          </div>
-          <div>
-            <label for="end">Latest date:</label>
-            <input
-
-              type="date"
-              id="end-date"
-              name="End-Date"
-              value="2022-05-20"
-              min="2018-12-31"
-            />
+            <div>
+              <label for="start">Earliest date:</label>
+              <input
+                type="date"
+                id="start-date"
+                name="Start-Date"
+                value="2022-04-27"
+                min="2018-12-31"
+              />
+            </div>
+            <div>
+              <label for="end">Latest date:</label>
+              <input
+                type="date"
+                id="end-date"
+                name="End-Date"
+                value="2022-05-20"
+                min="2018-12-31"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-   </div>
   </body>
   <script src="sketch.js"></script>
 </html>

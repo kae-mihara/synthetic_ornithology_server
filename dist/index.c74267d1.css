@@ -10,16 +10,23 @@
 }
 
 .button {
+  width: min-content;
   z-index: 600;
-  filter: drop-shadow(5px 0 #fff) drop-shadow(0 5px #fff) drop-shadow(-5px 0 #fff) drop-shadow(0 -5px #fff);
   background-color: #0000;
-  margin: .2em;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  border: 0;
+  grid-area: SettingsButton;
+  margin-left: auto;
+  margin-right: 0;
+  position: relative;
+}
+
+.buttonImage {
+  object-fit: cover;
+  display: block;
 }
 
 .mapFilters {
+  grid-area: "SettingsDiv";
   float: right;
   z-index: 500;
   background: #ffffff80;
@@ -30,20 +37,45 @@
   position: relative;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
-html, body, #checkinMap {
+#checkinMap {
   height: 100%;
   width: 100vw;
 }
 
+#masterGrid {
+  width: 100%;
+  grid-template: "Heading" min-content
+                 "SettingsButton" min-content
+                 "SettingsDiv" min-content
+                 / 100%;
+  grid-auto-flow: row;
+  display: grid;
+  position: absolute;
+  top: 55px;
+}
+
+.sliderStyle {
+  width: 65%;
+}
+
 h1 {
   text-align: center;
+  width: 100%;
   z-index: 500;
+  grid-area: Heading;
+  align-self: center;
+  padding: 0%;
   position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  margin: 0;
 }
 
 /*# sourceMappingURL=index.c74267d1.css.map */
