@@ -136,7 +136,7 @@ async function getData() {
     // if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value){
     //console.log("Min temp: " + minTemp + " Max Temp: " + maxTemp + " Actual temp: " + item.main.temp)
     if (item.main.temp > minTemp && item.main.temp < maxTemp) {
-      if(item.coord.lat > latMaxSL.value && item.coord.lat < latMinSL.value && item.coord.lon > lonMaxSL.value && item.coord.lon < lonMinSL.value){
+      if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value && item.coord.lon > lonMinSL.value && item.coord.lon < lonMaxSL.value){
       const marker = L.marker([item.coord.lat, item.coord.lon]);
       marker.bindPopup(
         "Location:" +
