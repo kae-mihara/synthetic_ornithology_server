@@ -87,8 +87,8 @@ lonMaxSL.addEventListener("change", function () {
 
 const minTempSL = document.getElementById("minTemp");
 const maxTempSL = document.getElementById("maxTemp");
-let minTemp = 0;
-let maxTemp = 40;
+var minTemp = 0;
+var maxTemp = 40;
 
 minTempSL.addEventListener("change", function () {
   minTemp = minTempSL.value;
