@@ -1,9 +1,11 @@
 const mymap = L.map("checkinMap").setView([-24.801233, 132.94551], 5);
-
 mymap.fitBounds([
   [-10, 112],
-  [-44, 154]
-])
+  [-44, 154],
+]);
+var corner1 = L.latLng(-10, 112),
+  corner2 = L.latLng(4 - 44, 154),
+  geofilter = L.latLngBounds(corner1, corner2);
 
 const attribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -30,7 +32,7 @@ mapFilters.style.display = "none";
 const settingsButton = document.getElementById("settingsButton");
 settingsButton.addEventListener("click", showHideDiv);
 
-function showHideDiv(){
+function showHideDiv() {
   console.log("show div " + mapFilters.style.display);
   if (mapFilters.style.display === "none") {
     mapFilters.style.display = "inline-block";
@@ -55,6 +57,9 @@ function resetBoundingBox() {
   ];
   boundingBox = L.rectangle(bounds, { color: "#ff7800", weight: 1 });
   mymap.addLayer(boundingBox);
+  corner1 = L.latLng(latMinSL.value, lonMinSL.value);
+  corner2 = L.latLng(latMaxSL.value, lonMaxSL.value);
+  geofilter = L.latLngBounds(corner1, corner2);
 }
 
 latMinSL.addEventListener("change", function () {
@@ -103,7 +108,6 @@ maxTempSL.addEventListener("change", function () {
   document.getElementById("maxTempL").textContent =
     "Max temp: " + maxTempSL.value;
   getData();
-  
 });
 
 const earliestDate = document.getElementById("start-date");
@@ -128,15 +132,11 @@ async function getData() {
   const response = await fetch("/api");
   const data = await response.json();
 
-  console.log(Object.keys(data).length);
   for (item of data) {
-    console.log("Getting data : " + counter + " " + item);
-    counter++;
-    console.log( latMinSL.value + " " + item.coord.lat + " " + latMaxSL.value +  " " + lonMinSL.value + " " + item.coord.lon + " " + lonMaxSL.value);
-    // if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value){
-    //console.log("Min temp: " + minTemp + " Max Temp: " + maxTemp + " Actual temp: " + item.main.temp)
     if (item.main.temp > minTemp && item.main.temp < maxTemp) {
-      if(item.coord.lat > latMinSL.value && item.coord.lat < latMaxSL.value && item.coord.lon > lonMinSL.value && item.coord.lon < lonMaxSL.value){
+      if (geofilter.contains(L.latLng(item.coord.lat, item.coord.lon))) {
+        console.log("marker is in the range");
+      }
       const marker = L.marker([item.coord.lat, item.coord.lon]);
       marker.bindPopup(
         "Location:" +
@@ -154,9 +154,7 @@ async function getData() {
       markers.addLayer(marker);
     }
   }
-    //  }
-  }
-  //console.log(data);
+
   mymap.addLayer(markers);
 }
 
