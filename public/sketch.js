@@ -1,5 +1,10 @@
 const mymap = L.map("checkinMap").setView([-24.801233, 132.94551], 5);
 
+mymap.fitBounds([
+  [-10, 113],
+  [-44, 154]
+])
+
 const attribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
