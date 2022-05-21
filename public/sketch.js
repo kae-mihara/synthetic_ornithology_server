@@ -1,7 +1,7 @@
 const mymap = L.map("checkinMap").setView([-24.801233, 132.94551], 5);
 
 mymap.fitBounds([
-  [-10, 113],
+  [-10, 112],
   [-44, 154]
 ])
 
