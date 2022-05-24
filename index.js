@@ -7,6 +7,7 @@ var https = require("https");
 
 const app = express();
 app.use(express.static(__dirname + "/dist"));
+app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 
 const port = process.env.PORT || 3000;
 
