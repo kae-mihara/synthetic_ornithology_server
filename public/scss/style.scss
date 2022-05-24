@@ -6,7 +6,10 @@
   position: relative;
   align-items: left;
   z-index: 500;
+  display: inline-block;
   flex-direction: column;
+  min-width: 900;
+  max-width: 90%;
 }
 
 
@@ -19,24 +22,51 @@
   border: 0ch;
   z-index: 600;
   background-color: transparent;
-
 }
 
 .buttonImage{
   object-fit: cover;
   display:block;
 }
+
 .mapFilters {
   grid-area: "SettingsDiv";
   border-radius: 1em;
-  position: relative;
-  display: none;
-  padding: 20px;
+  display: inline-block;
+  margin-left: auto;
+  padding: 5px;
+  margin-right: 10px;
+  margin-left: minmax(10, auto);
   background: rgba(255, 255, 255, 0.502);
   z-index: 500;
-
+  min-width: 900;
+  max-width: 90%;
 }
-
+.rs-container .rs-scale span:last-of-type {
+  width: 0 !important;
+}
+.slider-container {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto 50px;
+  z-index: 500;
+  padding-top: 10px;
+  min-width: 180;
+  max-width: 700;
+}
+.sliderAndLabel{
+  padding-top: 10px;
+  min-width: 180;
+  max-width: 700;
+}
+.slider{
+  z-index: 600;
+  object-fit: cover;
+  display: inline-block;
+}
+.mapControls{
+  z-index: 500;
+}
 html,
 body {
   height: 100%;
@@ -63,7 +93,8 @@ body {
     "SettingsDiv";
 }
 .sliderStyle{
-  width: 65%; 
+  min-width: 58%;
+  max-width: 75%;
 }
 
 h1 {

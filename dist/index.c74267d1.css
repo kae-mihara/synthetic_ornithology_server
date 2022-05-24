@@ -5,7 +5,10 @@
 .container.space-around {
   align-items: left;
   z-index: 500;
+  min-width: 900px;
+  max-width: 90%;
   flex-direction: column;
+  display: inline-block;
   position: relative;
 }
 
@@ -27,12 +30,43 @@
 
 .mapFilters {
   grid-area: "SettingsDiv";
+  margin-left: auto;
+  margin-right: 10px;
+  margin-left: minmax(10, auto);
   z-index: 500;
+  min-width: 900px;
+  max-width: 90%;
   background: #ffffff80;
   border-radius: 1em;
-  padding: 20px;
-  display: none;
-  position: relative;
+  padding: 5px;
+  display: inline-block;
+}
+
+.rs-container .rs-scale span:last-of-type {
+  width: 0 !important;
+}
+
+.slider-container {
+  width: 90%;
+  max-width: 500px;
+  z-index: 500;
+  margin: 0 auto 50px;
+}
+
+.sliderAndLabel {
+  min-width: 180px;
+  max-width: 700px;
+  padding-top: 10px;
+}
+
+.slider {
+  z-index: 600;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.mapControls {
+  z-index: 500;
 }
 
 html, body {
@@ -59,7 +93,8 @@ html, body {
 }
 
 .sliderStyle {
-  width: 65%;
+  min-width: 58%;
+  max-width: 75%;
 }
 
 h1 {
