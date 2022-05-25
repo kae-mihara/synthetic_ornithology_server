@@ -65,26 +65,22 @@ function resetBoundingBox() {
   ];
   boundingBox = L.rectangle(bounds, { color: "#ff7800", weight: 1 });
   mymap.addLayer(boundingBox);
-  corner1 = L.latLng(latMin, lonMin);
-  corner2 = L.latLng(latMax, lonMax);
-  geofilter = L.latLngBounds(corner1, corner2);
+  // corner1 = L.latLng(latMin, lonMin);
+  // corner2 = L.latLng(latMax, lonMax);
+  // geofilter = L.latLngBounds(corner1, corner2);
 }
-
-
-
 
 function isSampleInDateRange(dateStamp) {
   // format: mm.dd.yyyy;
   // var minDate = earliestDate.value;
   // var maxDate = latestDate.value;
-
   // return minDate < dateStamp && dateStamp < maxDate;
 }
 
 getData();
 
 async function getData() {
-  var markers = L.markerClusterGroup();
+  let markers = L.markerClusterGroup();
 
   mymap.removeLayer(markers);
 
@@ -93,10 +89,24 @@ async function getData() {
   const data = await response.json();
 
   for (item of data) {
-    if (item.main.temp > minTemp && item.main.temp < maxTemp) {
-      if (geofilter.contains(L.latLng(item.coord.lat, item.coord.lon))) {
-        console.log("marker is in the range");
-      }
+    if (
+      item.main.temp > minTemp.slice(0, -3) &&
+      item.main.temp < maxTemp.slice(0, -3) 
+    ) {
+      // console.log(
+      //   "Lat min: " +
+      //   parseFloat(latMin) +
+      //     " actual lat: " +
+      //     parseFloat(item.coord.lat) +
+      //     " lat max: " +
+      //     parseFloat(latMax) +
+      //     " lon min " +
+      //     parseFloat(lonMin) +
+      //     " actual lon: " +
+      //     parseFloat(item.coord.lon) +
+      //     " lon max: " +
+      //     parseFloat(lonMax)
+      // );
       const marker = L.marker([item.coord.lat, item.coord.lon]);
       marker.options.riseOnHover = true;
       marker.bindPopup(
@@ -150,13 +160,18 @@ noUiSlider.create(noUiSliderTempRange, {
     min: -20,
     max: 50,
   },
+  format: wNumb({
+    decimals: 2,
+    suffix: " °C",
+  }),
 });
 
 noUiSliderTempRange.noUiSlider.on("update", function (values, handles) {
   minTemp = values[0];
   maxTemp = values[1];
+
   getData();
-  console.log("Temp range: " + values);
+  //console.log("Temp range: " + values);
 });
 
 var noUiSliderLongRange = document.getElementById("noUiSliderLongRange");
@@ -172,7 +187,7 @@ noUiSlider.create(noUiSliderLongRange, {
 });
 
 noUiSliderLongRange.noUiSlider.on("update", function (values, handles) {
-  console.log("Long range: " + values);
+  //console.log("Long range: " + values);
   lonMin = values[0];
   lonMax = values[1];
   resetBoundingBox();
@@ -192,13 +207,12 @@ noUiSlider.create(noUiSliderLatRange, {
 });
 
 noUiSliderLatRange.noUiSlider.on("update", function (values, handles) {
-  console.log("Lat range: " + values);
+  //console.log("Lat range: " + values);
   latMin = values[0];
   latMax = values[1];
   resetBoundingBox();
   getData();
 });
-
 
 function timestamp(str) {
   return new Date(str).getTime();
@@ -207,12 +221,12 @@ function timestamp(str) {
 var noUiSliderDateRange = document.getElementById("noUiSliderDateRange");
 
 var dateValues = [
-  document.getElementById('event-start'),
-  document.getElementById('event-end')
+  document.getElementById("event-start"),
+  document.getElementById("event-end"),
 ];
 
 noUiSlider.create(noUiSliderDateRange, {
-  start: [timestamp('2019'), timestamp('2024')],
+  start: [timestamp("2019"), timestamp("2024")],
   connect: true,
   tooltips: [true, true],
   handleAttributes: [
@@ -220,20 +234,24 @@ noUiSlider.create(noUiSliderDateRange, {
     { "aria-label": "Latest date" },
   ],
   range: {
-    min: timestamp('2019'),
-    max: timestamp('2024')
-},
+    min: timestamp("2019"),
+    max: timestamp("2024"),
+  },
+  format: wNumb({
+    decimals: 0,
+  }),
+  tooltips: false,
 });
+var dateValues = [
+  document.getElementById("event-start"),
+  document.getElementById("event-end"),
+];
 
-var formatter = new Intl.DateTimeFormat('en-GB', {
-  dateStyle: 'full'
+var formatter = new Intl.DateTimeFormat("en-GB", {
+  dateStyle: "full",
 });
-
-
 
 noUiSliderDateRange.noUiSlider.on("update", function (values, handle) {
   console.log("Date range: " + values);
   dateValues[handle].innerHTML = formatter.format(new Date(+values[handle]));
-
 });
-

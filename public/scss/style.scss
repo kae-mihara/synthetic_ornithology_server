@@ -36,34 +36,32 @@
   margin-left: auto;
   padding: 5px;
   margin-right: 10px;
-  margin-left: minmax(10, auto);
+  margin-right: 10px;
+  //margin-left: minmax(10, auto);
   background: rgba(255, 255, 255, 0.502);
   z-index: 500;
-  min-width: 900;
-  max-width: 90%;
+  min-width: 50%;
+  max-width: 80%;
 }
+
 .rs-container .rs-scale span:last-of-type {
   width: 0 !important;
 }
+
 .slider-container {
-  width: 90%;
-  max-width: 500px;
-  margin: 0 auto 50px;
+  align-content: center;
+  width: 100%;
+  margin: 40px;
+max-width: 90%;
   z-index: 500;
   padding-top: 10px;
-  min-width: 180;
-  max-width: 700;
 }
-.sliderAndLabel{
-  padding-top: 10px;
-  min-width: 180;
-  max-width: 700;
+
+.slider-id{
+  align-self: center;
+  padding: 15px;
 }
-.slider{
-  z-index: 600;
-  object-fit: cover;
-  display: inline-block;
-}
+
 .mapControls{
   z-index: 500;
 }
@@ -109,4 +107,14 @@ h1 {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 0;
+}
+
+.earliest-date-label:before {
+  content: "Earliest date: ";
+  font: 700 12px Arial;
+}
+
+.latest-date-label:before {
+  content: "Latest date: ";
+  font: 700 12px Arial;
 }

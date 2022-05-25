@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="./markerCluster/MarkerCluster.Default.css" />
     <script src="./markerCluster/leaflet.markercluster-src.js"></script>
     <link href="scss/main.scss" rel="stylesheet" type="text/css" />
-
+    <script src="./wNumb/wNumb.js"></script>
     <link href="./nouislider/dist/nouislider.css" rel="stylesheet" />
     <script src="./nouislider/dist/nouislider.js"></script>
-
+  
     <title>Synthetic Ornithology data mapping</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
   </head>
@@ -41,21 +41,32 @@
         </button>
 
         <div class="mapFilters" id="mapFilters">
-          <div class="container space-around">
             <div class="slider-container">
+
               <div id="noUiSliderTempRange"></div>
+              <span class="slider-id">Tempurature range</span>
+
             </div>
             <div class="slider-container">
+
               <div id="noUiSliderLongRange"></div>
+              <span class="slider-id">Longditude range</span>
+
             </div>
             <div class="slider-container">
+             
+
               <div id="noUiSliderLatRange"></div>
+              <span class="slider-id">latitude range</span>
             </div>
             <div class="slider-container">
+
               <div id="noUiSliderDateRange"></div>
-              <span class="example-val" id="event-start">Friday, 31 December 2010</span>
-              <span class="example-val" id="event-end">Friday, 31 December 2010</span>
-            </div>
+              <span class="slider-id">Date range</span>
+              <p></p>
+              <span class="earliest-date-label" id="event-start">Friday, 31 December 2010</span>
+              <p></p>
+              <span class="latest-date-label" id="event-end">Friday, 31 December 2010</span>
           </div>
         </div>
       </div>
