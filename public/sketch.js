@@ -31,15 +31,14 @@ var lonMax = 20;
 var earliestDate;
 var latestDate;
 var markers = L.markerClusterGroup();
-var debugVerbose = false;
+var debugVerbose = true;
 var windowHasLoaded = false;
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
   windowHasLoaded = true;
+
   getData();
 });
-
-
 
 const mapFilters = document.getElementById("mapFilters");
 mapFilters.style.display = "none";
@@ -162,13 +161,17 @@ async function getData() {
             "<br/> Date:" +
             item.dateName +
             "<br/> Temperature:" +
-            item.main.temp + "&deg; C" +
+            item.main.temp +
+            "&deg; C" +
             "<br/> Humidity:" +
-            item.main.humidity + " %" +
+            item.main.humidity +
+            " %" +
             "<br/> Pressure:" +
-            item.main.pressure + " hPa"+
+            item.main.pressure +
+            " hPa" +
             "<br/> Wind speed:" +
-            item.wind.speed +" km/h" +
+            item.wind.speed +
+            " km/h" +
             '<br/><audio controls><source src="/audiofiles/' +
             item.timeStamp +
             '.wav"> type="audio/wave" </audio>'
@@ -271,9 +274,14 @@ var dateValues = [
   document.getElementById("event-start"),
   document.getElementById("event-end"),
 ];
+var startentry = 2;
+var endEntry = 2;
+
+startentry = timestamp("26 Feb 2022 00:12:00 GMT");
+endEntry = timestamp(Date.now());
 
 noUiSlider.create(noUiSliderDateRange, {
-  start: [timestamp("26 Feb 2022 00:12:00 GMT'"), timestamp(Date.now())],
+  start: [startentry, endEntry],
   connect: true,
   tooltips: [true, true],
   handleAttributes: [
@@ -281,8 +289,8 @@ noUiSlider.create(noUiSliderDateRange, {
     { "aria-label": "Latest date" },
   ],
   range: {
-    min: timestamp("26 Feb 2022 00:12:00 GMT'"),
-    max: timestamp(Date.now()),
+    min: startentry,
+    max: endEntry,
   },
   format: wNumb({
     decimals: 0,
