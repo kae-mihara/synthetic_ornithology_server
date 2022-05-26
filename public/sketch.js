@@ -28,11 +28,17 @@ var latMin = -20;
 var latMax = 20;
 var lonMin = -20;
 var lonMax = 20;
+var earliestDate;
+var latestDate;
+var markers = L.markerClusterGroup();
+var debugVerbose = false;
+var windowHasLoaded = false;
 
-const latMinSL = document.getElementById("latMin");
-const latMaxSL = document.getElementById("latMax");
-const lonMinSL = document.getElementById("lonMin");
-const lonMaxSL = document.getElementById("lonMax");
+window.addEventListener("load", function () {
+  windowHasLoaded = true;
+  getData();
+});
+
 const mapFilters = document.getElementById("mapFilters");
 mapFilters.style.display = "none";
 
@@ -40,7 +46,9 @@ const settingsButton = document.getElementById("settingsButton");
 settingsButton.addEventListener("click", showHideDiv);
 
 function showHideDiv() {
-  console.log("show div " + mapFilters.style.display);
+  if (debugVerbose) {
+    console.log("show div " + mapFilters.style.display);
+  }
   if (mapFilters.style.display === "none") {
     mapFilters.style.display = "inline-block";
     disableMap();
@@ -65,68 +73,109 @@ function resetBoundingBox() {
   ];
   boundingBox = L.rectangle(bounds, { color: "#ff7800", weight: 1 });
   mymap.addLayer(boundingBox);
-  // corner1 = L.latLng(latMin, lonMin);
-  // corner2 = L.latLng(latMax, lonMax);
-  // geofilter = L.latLngBounds(corner1, corner2);
 }
 
 function isSampleInDateRange(dateStamp) {
-  // format: mm.dd.yyyy;
-  // var minDate = earliestDate.value;
-  // var maxDate = latestDate.value;
-  // return minDate < dateStamp && dateStamp < maxDate;
+  let isInRange =
+    earliestDate / 1000 < dateStamp && dateStamp < latestDate / 1000;
+  if (debugVerbose) {
+    if (isInRange) {
+      console.log(
+        "Date range from: " +
+          earliestDate / 1000 +
+          " to " +
+          latestDate / 1000 +
+          " current date is: " +
+          dateStamp
+      );
+    } else {
+      console.log("Not in date range");
+    }
+  }
+
+  return isInRange;
+}
+
+function isSampleInTempRange(itemTemp) {
+  let isItemInTempRange =
+    itemTemp > minTemp.slice(0, -3) && itemTemp < maxTemp.slice(0, -3);
+  if (debugVerbose) {
+    if (isItemInTempRange) {
+      console.log(
+        "Inside temp rang. Temp range from: " +
+          minTemp.slice(0, -3) +
+          " to " +
+          maxTemp.slice(0, -3) +
+          " current temp is: " +
+          itemTemp
+      );
+    } else {
+      console.log("Not in range temp is" + itemTemp);
+    }
+  }
+
+  return isItemInTempRange;
+}
+
+function isSampleInLatLonRange(itemLat, itemLon) {
+  let isInGeoRangeRange =
+    parseFloat(itemLat) > parseFloat(latMin) &&
+    parseFloat(itemLat) < latMax &&
+    parseFloat(itemLon) > parseFloat(lonMin) &&
+    parseFloat(itemLon) < parseFloat(lonMax);
+  if (debugVerbose) {
+    if (isInGeoRangeRange) {
+      console.log("Inside lat lon bounds");
+    } else {
+      console.log("Not in lat lon bounds");
+    }
+  }
+
+  return isInGeoRangeRange;
 }
 
 getData();
 
 async function getData() {
-  let markers = L.markerClusterGroup();
+  if (windowHasLoaded) {
+    markers.clearLayers();
+    mymap.removeLayer(markers);
 
-  mymap.removeLayer(markers);
+    var counter = 0;
+    const response = await fetch("/api");
+    const data = await response.json();
 
-  var counter = 0;
-  const response = await fetch("/api");
-  const data = await response.json();
-
-  for (item of data) {
-    if (
-      item.main.temp > minTemp.slice(0, -3) &&
-      item.main.temp < maxTemp.slice(0, -3) 
-    ) {
-      // console.log(
-      //   "Lat min: " +
-      //   parseFloat(latMin) +
-      //     " actual lat: " +
-      //     parseFloat(item.coord.lat) +
-      //     " lat max: " +
-      //     parseFloat(latMax) +
-      //     " lon min " +
-      //     parseFloat(lonMin) +
-      //     " actual lon: " +
-      //     parseFloat(item.coord.lon) +
-      //     " lon max: " +
-      //     parseFloat(lonMax)
-      // );
-      const marker = L.marker([item.coord.lat, item.coord.lon]);
-      marker.options.riseOnHover = true;
-      marker.bindPopup(
-        "Location:" +
-          item.name +
-          "<br/> Weather :" +
-          item.weather[0].description +
-          "<br/> Date:" +
-          item.dateName +
-          "<br/> Temperature :" +
-          item.main.temp +
-          '&deg; C.<br/><br/><audio controls><source src="/audiofiles/' +
-          item.timeStamp +
-          '.wav"> type="audio/wave" </audio>'
-      );
-      markers.addLayer(marker);
+    for (item of data) {
+      if (
+        isSampleInTempRange(item.main.temp) &&
+        isSampleInDateRange(item.dt) &&
+        isSampleInLatLonRange(item.coord.lat, item.coord.lon)
+      ) {
+        const marker = L.marker([item.coord.lat, item.coord.lon]);
+        marker.bindPopup(
+          "Location:" +
+            item.name +
+            "<br/> Weather :" +
+            item.weather[0].description +
+            "<br/> Date:" +
+            item.dateName +
+            "<br/> Temperature:" +
+            item.main.temp + "&deg; C" +
+            "<br/> Humidity:" +
+            item.main.humidity + " %" +
+            "<br/> Pressure:" +
+            item.main.pressure + " hPa"+
+            "<br/> Wind speed:" +
+            item.wind.speed +" km/h" +
+            '<br/><audio controls><source src="/audiofiles/' +
+            item.timeStamp +
+            '.wav"> type="audio/wave" </audio>'
+        );
+        markers.addLayer(marker);
+      }
     }
+    mymap.addLayer(markers);
   }
-
-  mymap.addLayer(markers);
 }
 
 function disableMap() {
@@ -153,7 +202,7 @@ function enableMap() {
 var noUiSliderTempRange = document.getElementById("noUiSliderTempRange");
 
 noUiSlider.create(noUiSliderTempRange, {
-  start: [10, 40],
+  start: [0, 40],
   connect: true,
   tooltips: [true, true],
   range: {
@@ -169,9 +218,7 @@ noUiSlider.create(noUiSliderTempRange, {
 noUiSliderTempRange.noUiSlider.on("update", function (values, handles) {
   minTemp = values[0];
   maxTemp = values[1];
-
   getData();
-  //console.log("Temp range: " + values);
 });
 
 var noUiSliderLongRange = document.getElementById("noUiSliderLongRange");
@@ -187,7 +234,6 @@ noUiSlider.create(noUiSliderLongRange, {
 });
 
 noUiSliderLongRange.noUiSlider.on("update", function (values, handles) {
-  //console.log("Long range: " + values);
   lonMin = values[0];
   lonMax = values[1];
   resetBoundingBox();
@@ -207,7 +253,6 @@ noUiSlider.create(noUiSliderLatRange, {
 });
 
 noUiSliderLatRange.noUiSlider.on("update", function (values, handles) {
-  //console.log("Lat range: " + values);
   latMin = values[0];
   latMax = values[1];
   resetBoundingBox();
@@ -226,7 +271,7 @@ var dateValues = [
 ];
 
 noUiSlider.create(noUiSliderDateRange, {
-  start: [timestamp("2019"), timestamp("2024")],
+  start: [timestamp("26 Feb 2022 00:12:00 GMT'"), timestamp(Date.now())],
   connect: true,
   tooltips: [true, true],
   handleAttributes: [
@@ -234,8 +279,8 @@ noUiSlider.create(noUiSliderDateRange, {
     { "aria-label": "Latest date" },
   ],
   range: {
-    min: timestamp("2019"),
-    max: timestamp("2024"),
+    min: timestamp("26 Feb 2022 00:12:00 GMT'"),
+    max: timestamp(Date.now()),
   },
   format: wNumb({
     decimals: 0,
@@ -252,6 +297,8 @@ var formatter = new Intl.DateTimeFormat("en-GB", {
 });
 
 noUiSliderDateRange.noUiSlider.on("update", function (values, handle) {
-  console.log("Date range: " + values);
+  earliestDate = values[0];
+  latestDate = values[1];
   dateValues[handle].innerHTML = formatter.format(new Date(+values[handle]));
+  getData();
 });
