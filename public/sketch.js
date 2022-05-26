@@ -34,10 +34,12 @@ var markers = L.markerClusterGroup();
 var debugVerbose = false;
 var windowHasLoaded = false;
 
-window.addEventListener("load", function () {
+document.addEventListener("DOMContentLoaded", function(event) {
   windowHasLoaded = true;
   getData();
 });
+
+
 
 const mapFilters = document.getElementById("mapFilters");
 mapFilters.style.display = "none";
