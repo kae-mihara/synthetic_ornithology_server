@@ -38,7 +38,7 @@
   margin-right: 10px;
   margin-right: 10px;
   //margin-left: minmax(10, auto);
-  background: rgba(255, 255, 255, 0.502);
+  background: rgba(255, 255, 255, 0.402);
   z-index: 500;
   min-width: 50%;
   max-width: 80%;
@@ -82,6 +82,7 @@ body {
 #masterGrid {
   width: 100%;
   position: absolute;
+  top: 10px;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: min-content min-content min-content;
@@ -115,22 +116,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   content: "Earliest date: ";
   font: 700 16px Arial;
 }
-
 span#event-start,span#event-end{
   font-size: 16px;
 }
-
 .latest-date-label:before {
   content: "Latest date: ";
   font: 700 16px Arial;
 }
 
 @media only screen and (max-width: 600px) {
-
+  #masterGrid{
+    top: 0px!important;
+  }
+  #mapFilters > div:nth-child(4){
+    margin: -30px 10px!important;
+  }
   .slider-container {
     width: 100% !important;
     max-width: 95% !important;
-    margin: 40px 10px !important;
+    margin: 36px 10px !important;
   }
 
   .mapFilters {
@@ -138,5 +142,34 @@ span#event-start,span#event-end{
     max-width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
+    padding: 15px !important;
+  }
+  h1 {
+    font-size: 17px;
+  }
+  img#buttonImage{
+    width: 35px;
+  }
+  div#mapFilters{
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .noUi-horizontal{
+    height: 12px!important;
+  }
+  .noUi-horizontal .noUi-handle{
+    top: -10px!important;
+  }
+  
+}
+@media only screen and (max-width: 350px){
+  h1 {
+    font-size: 13px;
+  }
+  div#mapFilters{
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
