@@ -116,9 +116,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   content: "Earliest date: ";
   font: 700 16px Arial;
 }
+
 span#event-start,span#event-end{
   font-size: 16px;
 }
+
 .latest-date-label:before {
   content: "Latest date: ";
   font: 700 16px Arial;
@@ -129,7 +131,7 @@ span#event-start,span#event-end{
   .slider-container {
     width: 100% !important;
     max-width: 95% !important;
-    margin: 36px 10px !important;
+    margin: 40px 10px !important;
   }
 
   .mapFilters {
@@ -137,23 +139,5 @@ span#event-start,span#event-end{
     max-width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding: 15px !important;
-  }
-  h1 {
-    font-size: 17px;
-  }
-  img#buttonImage{
-    width: 35px;
-  }
-  div#mapFilters{
-    height: 500px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-  .noUi-horizontal{
-    height: 12px!important;
-  }
-  .noUi-horizontal .noUi-handle{
-    top: -10px!important;
   }
 }
