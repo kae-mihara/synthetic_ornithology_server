@@ -51,15 +51,16 @@
 .slider-container {
   align-content: center;
   width: 100%;
-  margin: 40px;
   max-width: 90%;
   z-index: 500;
+  margin: 40px;
   padding-top: 10px;
 }
 
 .slider-id {
   align-self: center;
   padding: 15px;
+  font-size: 18px;
 }
 
 .mapControls {
@@ -113,10 +114,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .earliest-date-label:before {
   content: "Earliest date: ";
-  font: 700 12px Arial;
+  font: 700 16px Arial;
 }
-
+span#event-start,span#event-end{
+  font-size: 16px;
+}
 .latest-date-label:before {
   content: "Latest date: ";
-  font: 700 12px Arial;
+  font: 700 16px Arial;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .slider-container {
+    width: 100% !important;
+    max-width: 95% !important;
+    margin: 36px 10px !important;
+  }
+
+  .mapFilters {
+    min-width:85% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 15px !important;
+  }
+  h1 {
+    font-size: 17px;
+  }
+  img#buttonImage{
+    width: 35px;
+  }
+  div#mapFilters{
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .noUi-horizontal{
+    height: 12px!important;
+  }
+  .noUi-horizontal .noUi-handle{
+    top: -10px!important;
+  }
 }
