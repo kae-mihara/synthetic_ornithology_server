@@ -64,7 +64,7 @@ var bounds = [
   [latMin, lonMin],
   [latMax, lonMax],
 ];
-var boundingBox = L.rectangle(bounds, { color: "#ff7800", weight: 1 });
+var boundingBox = L.rectangle(bounds, { color: "#FFFFFF", weight: 1 });
 
 function resetBoundingBox() {
   mymap.removeLayer(boundingBox);
@@ -72,7 +72,7 @@ function resetBoundingBox() {
     [latMin, lonMin],
     [latMax, lonMax],
   ];
-  boundingBox = L.rectangle(bounds, { color: "#ff7800", weight: 1 });
+  boundingBox = L.rectangle(bounds, { color: "#FFFFFF", weight: 1 });
   mymap.addLayer(boundingBox);
 }
 
@@ -154,24 +154,26 @@ async function getData() {
       ) {
         const marker = L.marker([item.coord.lat, item.coord.lon]);
         marker.bindPopup(
+          '<b>' +
+          
           "Location:" +
             item.name +
-            "<br/> Weather :" +
+            "<br/> Weather: " +
             item.weather[0].description +
-            "<br/> Date:" +
+            "<br/> Date: " +
             item.dateName +
-            "<br/> Temperature:" +
+            "<br/> Temperature: " +
             item.main.temp +
             "&deg; C" +
-            "<br/> Humidity:" +
+            "<br/> Humidity: " +
             item.main.humidity +
             " %" +
-            "<br/> Pressure:" +
+            "<br/> Pressure: " +
             item.main.pressure +
             " hPa" +
-            "<br/> Wind speed:" +
+            "<br/> Wind speed: " +
             item.wind.speed +
-            " km/h" +
+            " km/h" + "</b> <br>" +
             '<br/><audio controls><source src="/audiofiles/' +
             item.timeStamp +
             '.wav"> type="audio/wave" </audio>'
