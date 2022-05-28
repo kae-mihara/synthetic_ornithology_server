@@ -31,8 +31,9 @@ var lonMax = 20;
 var earliestDate;
 var latestDate;
 var markers = L.markerClusterGroup();
-var debugVerbose = true;
+var debugVerbose = false;
 var windowHasLoaded = false;
+var useFilters = true;
 
 document.addEventListener("DOMContentLoaded", function (event) {
   windowHasLoaded = true;
@@ -73,7 +74,9 @@ function resetBoundingBox() {
     [latMax, lonMax],
   ];
   boundingBox = L.rectangle(bounds, { color: "#FFFFFF", weight: 1 });
-  mymap.addLayer(boundingBox);
+  if (useFilters) {
+    mymap.addLayer(boundingBox);
+  }
 }
 
 function isSampleInDateRange(dateStamp) {
@@ -147,16 +150,48 @@ async function getData() {
     const data = await response.json();
 
     for (item of data) {
-      if (
-        isSampleInTempRange(item.main.temp) &&
-        isSampleInDateRange(item.dt) &&
-        isSampleInLatLonRange(item.coord.lat, item.coord.lon)
-      ) {
+      if (useFilters) {
+        if (
+          isSampleInTempRange(item.main.temp) &&
+          isSampleInDateRange(item.dt) &&
+          isSampleInLatLonRange(item.coord.lat, item.coord.lon)
+        ) {
+          const marker = L.marker([item.coord.lat, item.coord.lon]);
+          marker.bindPopup(
+            "<b>" +
+              "Location:" +
+              item.name +
+              "<br/> Weather: " +
+              item.weather[0].description +
+              "<br/> Date: " +
+              item.dateName +
+              "<br/> Temperature: " +
+              item.main.temp +
+              "&deg; C" +
+              "<br/> Humidity: " +
+              item.main.humidity +
+              " %" +
+              "<br/> Pressure: " +
+              item.main.pressure +
+              " hPa" +
+              "<br/> Wind speed: " +
+              item.wind.speed +
+              " km/h" +
+              "</b> <br>" +
+              '<br/><audio controls><source src="/audiofiles/' +
+              item.timeStamp +
+              '.wav"> type="audio/wave" </audio>'
+          );
+          markers.addLayer(marker);
+        }
+        
+      }
+      if (!useFilters) {
+        console.log(item);
         const marker = L.marker([item.coord.lat, item.coord.lon]);
         marker.bindPopup(
-          '<b>' +
-          
-          "Location:" +
+          "<b>" +
+            "Location:" +
             item.name +
             "<br/> Weather: " +
             item.weather[0].description +
@@ -173,7 +208,8 @@ async function getData() {
             " hPa" +
             "<br/> Wind speed: " +
             item.wind.speed +
-            " km/h" + "</b> <br>" +
+            " km/h" +
+            "</b> <br>" +
             '<br/><audio controls><source src="/audiofiles/' +
             item.timeStamp +
             '.wav"> type="audio/wave" </audio>'
@@ -313,4 +349,18 @@ noUiSliderDateRange.noUiSlider.on("update", function (values, handle) {
   latestDate = values[1];
   dateValues[handle].innerHTML = formatter.format(new Date(+values[handle]));
   getData();
+});
+var filterSwitch = document.getElementById("toggle_filters");
+filterSwitch.addEventListener("click", function () {
+  if (this.checked) {
+    useFilters = true;
+    console.log("using filters");
+    resetBoundingBox();
+    getData();
+  } else {
+    useFilters = false;
+    console.log("not using filters");
+    resetBoundingBox();
+    getData();
+  }
 });

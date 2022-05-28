@@ -43,11 +43,34 @@
   min-width: 50%;
   max-width: 80%;
 }
-
+.filter-element{
+  display: inline-block;
+  vertical-align: middle;
+  align-self: center;
+  
+}
+.toggle-filters{
+  vertical-align: middle;
+  text-align: center;
+}
 .rs-container .rs-scale span:last-of-type {
   width: 0 !important;
 }
+.filter-switch {
+  align-content: center;
+  width: 40px;
 
+}
+.filter-title{
+  vertical-align: middle;
+  text-align: center;
+  align-content: center;
+
+}
+.filter-check{
+  display:inline-flex;
+  align-content: center;
+}
 .slider-container {
   align-content: center;
   width: 100%;

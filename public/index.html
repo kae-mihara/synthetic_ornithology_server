@@ -27,7 +27,7 @@
 
     <link href="./noUiSlider/nouislider.css" rel="stylesheet" />
     <script src="./noUiSlider/nouislider.js"></script>
-  
+
     <title>Synthetic Ornithology data mapping</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
   </head>
@@ -35,43 +35,46 @@
     <div id="progress"><div id="progress-bar"></div></div>
     <div id="checkinMap">
       <div id="masterGrid">
-        <h1>Synthetic Ornithology data mapping</h1>
+        <div><h1>Synthetic Ornithology data mapping</h1></div>
 
         <button class="button" id="settingsButton">
           <img src="/images/settings.png" id="buttonImage" />
         </button>
 
         <div class="mapFilters" id="mapFilters">
-            <div class="slider-container">
-
-              <div id="noUiSliderTempRange"></div>
-              <br>
-              <span class="slider-id">Tempurature range</span>
-
-            </div>
-            <div class="slider-container">
-
-              <div id="noUiSliderLongRange"></div>
-              <br>
-              <span class="slider-id">Longditude range</span>
-
-            </div>
-            <div class="slider-container">
-             
-
-              <div id="noUiSliderLatRange"></div>
-              <br>
-              <span class="slider-id">latitude range</span>
-            </div>
-            <div class="slider-container">
-
-              <div id="noUiSliderDateRange"></div>
-              <br>
-              <span class="slider-id">Date range</span>
-              <p></p>
-              <span class="earliest-date-label" id="event-start">Friday, 31 December 2010</span>
-              <p></p>
-              <span class="latest-date-label" id="event-end">Friday, 31 December 2010</span>
+          <div class="filter-check">
+            <div class="filter-element"> <h2 class="filter-title">Geo/Climate filters</h2></div>
+            <div class="filter-element">
+              <input type="checkbox" class = "toggle-filters" id="toggle_filters" checked = "true"/>
+           </div>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderTempRange"></div>
+            <br />
+            <span class="slider-id">Tempurature range</span>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderLongRange"></div>
+            <br />
+            <span class="slider-id">Longditude range</span>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderLatRange"></div>
+            <br />
+            <span class="slider-id">latitude range</span>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderDateRange"></div>
+            <br />
+            <span class="slider-id">Date range</span>
+            <p></p>
+            <span class="earliest-date-label" id="event-start"
+              >Friday, 31 December 2010</span
+            >
+            <p></p>
+            <span class="latest-date-label" id="event-end"
+              >Friday, 31 December 2010</span
+            >
           </div>
         </div>
       </div>
