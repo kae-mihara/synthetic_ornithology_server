@@ -261,6 +261,8 @@ noUiSlider.create(noUiSliderTempRange, {
 noUiSliderTempRange.noUiSlider.on("update", function (values, handles) {
   minTemp = values[0];
   maxTemp = values[1];
+  localStorage.minTemp = minTemp;
+  localStorage.maxTemp = maxTemp;
   getData();
 });
 
@@ -279,6 +281,8 @@ noUiSlider.create(noUiSliderLongRange, {
 noUiSliderLongRange.noUiSlider.on("update", function (values, handles) {
   lonMin = values[0];
   lonMax = values[1];
+  localStorage.lonMin = lonMin;
+  localStorage.lonMax = lonMax;
   resetBoundingBox();
   getData();
 });
@@ -298,6 +302,9 @@ noUiSlider.create(noUiSliderLatRange, {
 noUiSliderLatRange.noUiSlider.on("update", function (values, handles) {
   latMin = values[0];
   latMax = values[1];
+  localStorage.latMin = latMin;
+  localStorage.latMax = latMax;
+
   resetBoundingBox();
   getData();
 });
@@ -347,6 +354,9 @@ var formatter = new Intl.DateTimeFormat("en-GB", {
 noUiSliderDateRange.noUiSlider.on("update", function (values, handle) {
   earliestDate = values[0];
   latestDate = values[1];
+  localStorage.latestDate = latestDate;
+  localStorage.latestDate = latestDate;
+
   dateValues[handle].innerHTML = formatter.format(new Date(+values[handle]));
   getData();
 });
@@ -354,13 +364,58 @@ var filterSwitch = document.getElementById("toggle_filters");
 filterSwitch.addEventListener("click", function () {
   if (this.checked) {
     useFilters = true;
+    localStorage.useFilters = useFilters;
     console.log("using filters");
     resetBoundingBox();
     getData();
   } else {
     useFilters = false;
+    localStorage.useFilters = useFilters;
     console.log("not using filters");
     resetBoundingBox();
     getData();
   }
 });
+
+function readFromlocalStorage(){
+  if (typeof(Storage) !== "undefined") {
+    if (localStorage.useFilters) {
+      useFilters = localStorage.useFilters;
+    } 
+    if (localStorage.maxTemp) {
+      maxTemp = localStorage.maxTemp;
+    } 
+    if (localStorage.minTemp) {
+      minTemp = localStorage.minTemp;
+    } 
+
+    if (localStorage.minTemp) {
+      minTemp = localStorage.minTemp;
+    } 
+
+    if (localStorage.latMin) {
+      latMin = localStorage.latMin;
+    } 
+
+    if (localStorage.latMax) {
+      latMax = localStorage.latMax;
+    } 
+
+    if (localStorage.lonMin) {
+      lonMin = localStorage.lonMin;
+    } 
+
+    if (localStorage.lonMax) {
+      lonMax = localStorage.lonMax;
+    } 
+
+    if (localStorage.earliestDate) {
+      earliestDate = localStorage.earliestDate;
+    } 
+
+    if (localStorage.latestDate) {
+      latestDate = localStorage.latestDate;
+    } 
+  }
+
+}

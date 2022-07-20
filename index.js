@@ -51,3 +51,4 @@ app.post("/api", (request, response) => {
   database.insert(data);
   response.json(data.timeStamp + "_success");
 });
+

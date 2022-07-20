@@ -1,1 +1,68 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="true"><script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin="true"></script><link rel="stylesheet" href="/index.c008a804.css"><link rel="stylesheet" href="/index.fda300a5.css"><script src="/index.049bd34b.js"></script><link href="/index.d0ea2215.css" rel="stylesheet" type="text/css"><script src="/index.43118a64.js"></script><link href="/index.f7fb8dc8.css" rel="stylesheet"><script src="/index.112503b1.js"></script><title>Synthetic Ornithology data mapping</title><link rel="icon" type="image/x-icon" href="/favicon.ad44ef5f.ico"></head><body> <div id="progress"><div id="progress-bar"></div></div> <div id="checkinMap"> <div id="masterGrid"> <div><h1>Synthetic Ornithology data mapping</h1></div> <button class="button" id="settingsButton"> <img src="/settings.eb96e889.png" id="buttonImage"> </button> <div class="mapFilters" id="mapFilters"> <div class="filter-check"> <div class="filter-element"> <h2 class="filter-title">Geo/Climate filters</h2></div> <div class="filter-element"> <input type="checkbox" class="toggle-filters" id="toggle_filters" checked> </div> </div> <div class="slider-container"> <div id="noUiSliderTempRange"></div> <br> <span class="slider-id">Tempurature range</span> </div> <div class="slider-container"> <div id="noUiSliderLongRange"></div> <br> <span class="slider-id">Longditude range</span> </div> <div class="slider-container"> <div id="noUiSliderLatRange"></div> <br> <span class="slider-id">latitude range</span> </div> <div class="slider-container"> <div id="noUiSliderDateRange"></div> <br> <span class="slider-id">Date range</span> <p></p> <span class="earliest-date-label" id="event-start">Friday, 31 December 2010</span> <p></p> <span class="latest-date-label" id="event-end">Friday, 31 December 2010</span> </div> </div> </div> </div> </body><script src="/index.8671dca2.js"></script></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="true">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin="true"></script>
+    <link rel="stylesheet" href="/index.97782d8d.css">
+    <link rel="stylesheet" href="/index.8d1faf1c.css">
+    <script src="/index.075d0296.js"></script>
+    <link href="/index.c74267d1.css" rel="stylesheet" type="text/css">
+    <script src="/index.d55a13e6.js"></script>
+
+    <link href="/index.d3f5bd7a.css" rel="stylesheet">
+    <script src="/index.6d0c029c.js"></script>
+
+    <title>Synthetic Ornithology data mapping</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.88402922.ico">
+  </head>
+  <body>
+    <div id="progress"><div id="progress-bar"></div></div>
+    <div id="checkinMap">
+      <div id="masterGrid">
+        <div><h1>Synthetic Ornithology data mapping</h1></div>
+
+        <button class="button" id="settingsButton">
+          <img src="/settings.61aa1aa9.png" id="buttonImage">
+        </button>
+
+        <div class="mapFilters" id="mapFilters">
+          <div class="filter-check">
+            <div class="filter-element"> <h2 class="filter-title">Geo/Climate filters</h2></div>
+            <div class="filter-element">
+              <input type="checkbox" class="toggle-filters" id="toggle_filters" checked="true">
+           </div>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderTempRange"></div>
+            <br>
+            <span class="slider-id">Tempurature range</span>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderLongRange"></div>
+            <br>
+            <span class="slider-id">Longditude range</span>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderLatRange"></div>
+            <br>
+            <span class="slider-id">latitude range</span>
+          </div>
+          <div class="slider-container">
+            <div id="noUiSliderDateRange"></div>
+            <br>
+            <span class="slider-id">Date range</span>
+            <p></p>
+            <span class="earliest-date-label" id="event-start">Friday, 31 December 2010</span>
+            <p></p>
+            <span class="latest-date-label" id="event-end">Friday, 31 December 2010</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/index.a8b85b30.js"></script>
+</html>
